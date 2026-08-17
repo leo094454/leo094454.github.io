@@ -1,18 +1,124 @@
-const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
-const nav=$('#nav'),menu=$('#menu');
-addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>30),{passive:true});
-$('#menuBtn').onclick=()=>menu.classList.toggle('open');$$('#menu a').forEach(a=>a.onclick=()=>menu.classList.remove('open'));
-const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}}),{threshold:.12});$$('.reveal').forEach(x=>obs.observe(x));
-const dot=$('.cursor-dot'),ring=$('.cursor-ring');let mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
-addEventListener('pointermove',e=>{mx=e.clientX;my=e.clientY;burst(mx,my,Math.min(16,innerWidth/80))});
-(function loop(){rx+=(mx-rx)*.18;ry+=(my-ry)*.18;dot.style.left=mx+'px';dot.style.top=my+'px';ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop)})();
-$$('a,button').forEach(el=>{el.addEventListener('mouseenter',()=>{ring.style.width='48px';ring.style.height='48px'});el.addEventListener('mouseleave',()=>{ring.style.width='30px';ring.style.height='30px'});el.addEventListener('click',()=>burst(mx,my,28))});
-addEventListener('touchstart',e=>{for(const t of e.touches)burst(t.clientX,t.clientY,34)},{passive:true});addEventListener('touchmove',e=>{for(const t of e.touches)burst(t.clientX,t.clientY,20)},{passive:true});
-const canvas=$('#dustCanvas'),ctx=canvas.getContext('2d');let dpr=1,particles=[],bursts=[];
-function resize(){dpr=Math.min(devicePixelRatio||1,2);canvas.width=innerWidth*dpr;canvas.height=innerHeight*dpr;canvas.style.width=innerWidth+'px';canvas.style.height=innerHeight+'px';ctx.setTransform(dpr,0,0,dpr,0,0);particles=Array.from({length:Math.min(190,Math.floor(innerWidth/6))},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,vx:.08+Math.random()*.5,vy:(Math.random()-.5)*.16,r:.4+Math.random()*1.8,a:.06+Math.random()*.25}));}resize();addEventListener('resize',resize);
-function burst(x,y,n){for(let i=0;i<n;i++){let a=Math.random()*Math.PI*2,s=1+Math.random()*5;bursts.push({x,y,vx:Math.cos(a)*s+1.2,vy:Math.sin(a)*s,r:.7+Math.random()*2,a:.5+Math.random()*.4,life:1})}}
-function draw(){ctx.clearRect(0,0,innerWidth,innerHeight);for(const p of particles){p.x+=p.vx;p.y+=p.vy+Math.sin(p.x*.01)*.025;if(p.x>innerWidth+10)p.x=-10;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,7);ctx.fillStyle=`rgba(201,151,75,${p.a})`;ctx.fill()}for(let i=bursts.length-1;i>=0;i--){let p=bursts[i];p.x+=p.vx;p.y+=p.vy;p.vx*=.985;p.vy*=.985;p.life-=.025;p.r*=.99;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,7);ctx.fillStyle=`rgba(211,165,91,${p.a*p.life})`;ctx.fill();if(p.life<=0)bursts.splice(i,1)}requestAnimationFrame(draw)}draw();
-// Optional background audio: browsers block autoplay. If you place assets/dance-with-the-devil.mp3 in the folder, the SOUND button will control it.
-let audio=new Audio('assets/dance-with-the-devil.mp3');audio.loop=true;audio.volume=.24;let soundOn=false;$('#soundBtn').onclick=async()=>{try{if(!soundOn){await audio.play();soundOn=true;$('#soundBtn b').textContent='ON'}else{audio.pause();soundOn=false;$('#soundBtn b').textContent='OFF'}}catch(e){$('#soundBtn b').textContent='ADD MP3'}};
-// Tiny parallax on hero atmosphere
-addEventListener('pointermove',e=>{const x=(e.clientX/innerWidth-.5),y=(e.clientY/innerHeight-.5);document.querySelector('.hero-city').style.transform=`translate(${x*10}px,${y*3}px)`;document.querySelectorAll('.hero-smoke').forEach((s,i)=>s.style.transform=`translate(${x*(i? -15:12)}px,${y*8}px)`)});
+(() => {
+  'use strict';
+  const $ = (s, p = document) => p.querySelector(s);
+  const $$ = (s, p = document) => [...p.querySelectorAll(s)];
+
+  const intro = $('#intro');
+  const enter = $('#enterExperience');
+  const status = $('#audioStatus');
+  const audio = $('#siteAudio');
+  let started = false;
+  let introClosed = false;
+
+  // Audio: try audible autoplay first. If the browser blocks it, keep the track
+  // ready and ask for one deliberate tap/click. This is required by modern browsers.
+  async function startAudio({unmute = true} = {}) {
+    if (!audio) return false;
+    try {
+      if (unmute) audio.muted = false;
+      audio.volume = 0.42;
+      await audio.play();
+      started = true;
+      if (status) status.textContent = 'AUDIO EXPERIENCE • ON';
+      syncPlayer();
+      return true;
+    } catch {
+      try {
+        audio.muted = true;
+        await audio.play();
+        if (status) status.textContent = 'TAP ENTER TO ENABLE SOUND';
+        return false;
+      } catch {
+        if (status) status.textContent = 'TAP ENTER TO START';
+        return false;
+      }
+    }
+  }
+
+  async function enterExperience() {
+    if (introClosed) return;
+    const audible = await startAudio({unmute: true});
+    if (!audible) {
+      audio.muted = false;
+      try { await audio.play(); started = true; } catch {}
+    }
+    introClosed = true;
+    intro.classList.add('exit');
+    document.body.classList.add('experience-started');
+    setTimeout(() => intro.remove(), 1100);
+  }
+
+  window.addEventListener('load', async () => {
+    // Give the cinematic intro time to breathe while attempting autoplay.
+    const ok = await startAudio({unmute: true});
+    if (ok) setTimeout(enterExperience, 4300);
+  }, {once: true});
+  enter?.addEventListener('click', enterExperience);
+  intro?.addEventListener('pointerdown', e => { if (e.target === intro) enterExperience(); });
+
+  // First real user interaction: unlock audio on mobile/strict browsers.
+  const unlock = async () => {
+    if (!started) await enterExperience();
+  };
+  ['pointerdown', 'keydown', 'touchstart'].forEach(type => window.addEventListener(type, unlock, {once:true, passive:true}));
+
+  // Cursor glow + desktop parallax + touch parallax.
+  const glow = $('.cursor-glow');
+  const parallaxTargets = $$('.parallax-photo, .parallax-card, .hero-content');
+  let px = 0, py = 0, tx = 0, ty = 0;
+  function setPointer(x, y) { tx = (x / innerWidth - .5); ty = (y / innerHeight - .5); }
+  window.addEventListener('pointermove', e => {
+    setPointer(e.clientX, e.clientY);
+    if (glow) { glow.style.left = `${e.clientX}px`; glow.style.top = `${e.clientY}px`; opacity = 1; }
+  }, {passive:true});
+  window.addEventListener('touchmove', e => { const t = e.touches[0]; if (t) setPointer(t.clientX, t.clientY); }, {passive:true});
+  window.addEventListener('pointerleave', () => { tx = 0; ty = 0; });
+
+  function parallaxLoop() {
+    px += (tx - px) * .055; py += (ty - py) * .055;
+    const transforms = [`translate3d(${px*-10}px,${py*-7}px,0)`, `translate3d(${px*15}px,${py*11}px,0)`, `translate3d(${px*-6}px,${py*-4}px,0)`];
+    parallaxTargets.forEach((el, i) => el.style.transform = transforms[i % transforms.length]);
+    $$('.ambient-orb').forEach((el, i) => { const f = (i+1)*11; el.style.translate = `${px*f}px ${py*f}px`; });
+    requestAnimationFrame(parallaxLoop);
+  }
+  requestAnimationFrame(parallaxLoop);
+
+  // Scroll reveals.
+  const revealObserver = new IntersectionObserver(entries => entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  }), {threshold:.12, rootMargin:'0px 0px -40px'});
+  $$('.reveal').forEach((el, i) => { el.style.setProperty('--delay', `${Math.min(i%5,4)*70}ms`); revealObserver.observe(el); });
+
+  // Navigation.
+  const nav = $('#siteNav'), menu = $('#menuButton'), links = $$('.nav-links a');
+  menu?.addEventListener('click', () => {
+    const open = menu.getAttribute('aria-expanded') === 'true';
+    menu.setAttribute('aria-expanded', String(!open));
+    menu.setAttribute('aria-label', open ? 'Open navigation' : 'Close navigation');
+    $('#navLinks')?.classList.toggle('open', !open);
+  });
+  links.forEach(link => link.addEventListener('click', () => { menu?.setAttribute('aria-expanded','false'); $('#navLinks')?.classList.remove('open'); }));
+  window.addEventListener('scroll', () => nav?.classList.toggle('scrolled', scrollY > 24), {passive:true});
+
+  // Music player uses the same audio as the intro, so there is only one track instance.
+  const play = $('#play'), progress = $('#progress'), current = $('#current'), duration = $('#duration'), wave = $('#wave');
+  for (let i=0;i<64;i++) { const bar=document.createElement('i'); bar.style.setProperty('--h', `${16 + Math.random()*78}%`); wave?.appendChild(bar); }
+  const fmt = s => Number.isFinite(s) ? `${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,'0')}` : '0:00';
+  function syncPlayer(){ if (!play || !audio) return; play.textContent = audio.paused ? '▶' : 'Ⅱ'; wave?.classList.toggle('playing', !audio.paused); }
+  play?.addEventListener('click', async () => { if (audio.paused) { audio.muted=false; try {await audio.play();} catch{} } else audio.pause(); syncPlayer(); });
+  audio?.addEventListener('loadedmetadata', () => { if(duration) duration.textContent=fmt(audio.duration); });
+  audio?.addEventListener('timeupdate', () => { if(current) current.textContent=fmt(audio.currentTime); if(progress && audio.duration) progress.value=(audio.currentTime/audio.duration)*100; });
+  audio?.addEventListener('play', syncPlayer); audio?.addEventListener('pause', syncPlayer);
+  progress?.addEventListener('input', () => { if(audio.duration) audio.currentTime=(progress.value/100)*audio.duration; });
+  $('#back')?.addEventListener('click', () => { audio.currentTime=0; });
+  $('#mute')?.addEventListener('click', () => { audio.muted=!audio.muted; $('#mute').classList.toggle('muted', audio.muted); if(!audio.paused) audio.play().catch(()=>{}); });
+
+  // Active section indicator.
+  const sectionObserver = new IntersectionObserver(entries => entries.forEach(entry => {
+    if (entry.isIntersecting) links.forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`));
+  }), {rootMargin:'-38% 0px -55% 0px'});
+  $$('main section[id]').forEach(s => sectionObserver.observe(s));
+
+  // Respect reduced-motion preference.
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.body.classList.add('reduce-motion');
+})();

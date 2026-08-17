@@ -1,49 +1,118 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#090807">
-<title>LEONARDO — LEO | Cyber Security</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=DM+Mono:wght@400;500&family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#050505">
+  <meta name="description" content="LEONARDO — Cybersecurity learner, developer and aspiring red teamer.">
+  <meta property="og:title" content="LEONARDO — Cybersecurity Portfolio">
+  <meta property="og:description" content="Cybersecurity, red teaming, development and continuous learning.">
+  <meta property="og:type" content="website">
+  <title>LEONARDO — Cybersecurity Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div id="intro" class="intro"><div class="intro-inner"><span class="intro-kicker">THE NAME</span><h1>LEONARDO</h1><div class="intro-line"></div><span class="intro-sub">LEO / CYBER SECURITY</span></div></div>
-<canvas id="dustCanvas"></canvas><div class="grain"></div><div class="vignette"></div>
-<div class="cursor-dot"></div><div class="cursor-ring"></div>
-<header class="nav" id="nav"><a href="#home" class="brand">LEO<span>®</span></a><nav id="menu"><a href="#home">HOME</a><a href="#about">ABOUT</a><a href="#skills">SKILLS</a><a href="#labs">LABS</a><a href="#languages">CODE</a><a href="#journey">JOURNEY</a><a href="#contact">CONTACT</a></nav><button id="menuBtn" class="menu-btn" aria-label="menu">☰</button><button id="soundBtn" class="sound-btn">SOUND <b>OFF</b></button></header>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-<main>
-<section class="hero" id="home">
-  <div class="hero-noise"></div><div class="hero-city"></div><div class="hero-smoke s1"></div><div class="hero-smoke s2"></div>
-  <div class="hero-content reveal">
-    <div class="overline"><span>EST. 2026</span><i></i><span>PRIVATE FILE / LEO</span></div>
-    <p class="kicker">CYBER SECURITY / RED TEAMING</p>
-    <h2>LEONARDO</h2><div class="alias">“ LEO ”</div>
-    <p class="quote">“The double pleasure lies in deceiving the deceiver.”</p>
-    <p class="hero-desc">An ordinary guy who loves computers — building his name one skill, one lab and one operation at a time.</p>
-    <div class="hero-actions"><a href="#about" class="btn gold">ENTER THE FILE <span>↗</span></a><a href="#contact" class="btn ghost">CONTACT LEO <span>→</span></a></div>
-    <div class="hero-stats"><div><b>03</b><span>CORE SKILLS</span></div><div><b>05</b><span>LANGUAGES</span></div><div><b>02</b><span>CYBER LABS</span></div></div>
+  <div id="intro" class="intro" aria-label="Site introduction">
+    <div class="intro-grid"></div>
+    <div class="intro-glow"></div>
+    <div class="intro-content">
+      <div class="intro-meta"><span></span> SYSTEM ONLINE <i></i> 2026</div>
+      <div class="intro-hello">HELLO, MY WORLD</div>
+      <div class="intro-name">LEON<span>ARDO</span></div>
+      <div class="intro-role">CYBERSECURITY / DEVELOPER</div>
+    </div>
+    <button id="enterExperience" class="intro-enter" type="button">ENTER EXPERIENCE <span>↗</span></button>
+    <div id="audioStatus" class="audio-status">AUDIO EXPERIENCE READY</div>
   </div>
-  <div class="hero-photo reveal"><div class="photo-tag">LEONARDO / LEO<br><small>BLACK FILE</small></div><img src="assets/leo-black-outfit.jpg" alt="Leonardo in black outfit"><div class="photo-seal">L<br><small>CONFIDENTIAL</small></div></div>
-  <div class="hero-bottom"><span>SCROLL TO INVESTIGATE</span><span>NO. 001 — LEO</span></div>
-</section>
 
-<section class="section" id="about"><div class="section-head reveal"><span>01</span><h3>THE FILE</h3><em>ABOUT LEO</em></div><div class="about-grid"><div class="about-copy reveal"><span class="label">BIOGRAPHY</span><h2>The road is<br><strong>still long.</strong></h2><p>My name is Leonardo, an ordinary guy who loves computers and decided to become an icon in this field — someone whose name speaks for itself. The road is still long.</p><div class="signature">Leo</div></div><div class="dossier reveal"><div class="dossier-top"><span>PERSONAL DOSSIER</span><b>01 / 06</b></div><div class="dossier-row"><span>FIELD</span><b>Cyber Security</b></div><div class="dossier-row"><span>DIRECTION</span><b>Red Teaming</b></div><div class="dossier-row"><span>STATUS</span><b class="live">Learning / Building</b></div><div class="dossier-row"><span>OBJECTIVE</span><b>Become one of the greatest in my field.</b></div></div></div></section>
+  <div class="ambient" aria-hidden="true">
+    <div class="ambient-orb orb-1"></div><div class="ambient-orb orb-2"></div><div class="ambient-orb orb-3"></div>
+    <div class="ambient-grid"></div><div class="ambient-stars"></div>
+  </div>
+  <div class="cursor-glow" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
 
-<section class="section dark" id="skills"><div class="section-head reveal"><span>02</span><h3>CAPABILITIES</h3><em>SKILLS</em></div><div class="cards three"><article class="mafia-card reveal"><span class="num">01</span><div class="card-icon">⌁</div><h4>KALI LINUX</h4><p>Linux environment used for security learning, command-line work, reconnaissance and offensive-security tooling.</p><div class="card-foot">LINUX / SECURITY</div></article><article class="mafia-card reveal"><span class="num">02</span><div class="card-icon">◈</div><h4>CYBERSECURITY</h4><p>Learning the foundations of information security, systems, networks, vulnerabilities and defensive thinking.</p><div class="card-foot">SECURITY / DEFENSE</div></article><article class="mafia-card reveal"><span class="num">03</span><div class="card-icon">♢</div><h4>RED TEAMING</h4><p>Building toward adversary simulation, offensive security and realistic attack-path thinking in authorized environments.</p><div class="card-foot">OFFENSIVE / RED TEAM</div></article></div></section>
+  <audio id="siteAudio" preload="auto" loop playsinline>
+    <source src="assets/leonardo-music.mpeg" type="audio/mpeg">
+  </audio>
 
-<section class="section" id="languages"><div class="section-head reveal"><span>03</span><h3>THE TOOLKIT</h3><em>PROGRAMMING LANGUAGES</em></div><div class="lang-grid"><article class="lang-card reveal"><b>PY</b><h4>PYTHON</h4><p>Automation, scripting, data handling and security tooling. A powerful language for turning repetitive tasks into code.</p><span>01 / 05</span></article><article class="lang-card reveal"><b>H5</b><h4>HTML</h4><p>The structure of the web. Used to build semantic page layouts and the foundation of modern websites.</p><span>02 / 05</span></article><article class="lang-card reveal"><b>CS</b><h4>CSS</h4><p>The visual layer of the web — layouts, responsive design, transitions, animations and interfaces.</p><span>03 / 05</span></article><article class="lang-card reveal"><b>JS</b><h4>JAVA</h4><p>Object-oriented programming for building robust applications and understanding software concepts.</p><span>04 / 05</span></article><article class="lang-card reveal"><b>PHP</b><h4>PHP</h4><p>Server-side web development, dynamic pages, forms and backend logic.</p><span>05 / 05</span></article></div></section>
+  <header class="nav" id="siteNav">
+    <a class="brand" href="#home" aria-label="Leonardo home"><span class="brand-mark">L</span><span>LEONARDO</span></a>
+    <button id="menuButton" class="menu-button" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="navLinks"><i></i><i></i></button>
+    <nav id="navLinks" class="nav-links" aria-label="Primary navigation">
+      <a class="active" href="#home">HOME</a><a href="#about">ABOUT</a><a href="#skills">SKILLS</a><a href="#labs">LABS</a><a href="#music">MUSIC</a><a href="#contact">CONTACT</a>
+    </nav>
+    <span class="nav-status"><i></i> ONLINE</span>
+  </header>
 
-<section class="section dark" id="labs"><div class="section-head reveal"><span>04</span><h3>TRAINING GROUNDS</h3><em>CYBER LABS</em></div><div class="labs"><a class="lab reveal" href="https://www.hackthebox.com/" target="_blank" rel="noopener"><div class="lab-mark">⌬</div><div><small>01 / PLATFORM</small><h4>HACK THE BOX</h4><p>Hands-on machines, challenges and practical security learning.</p></div><b>↗</b></a><a class="lab reveal" href="https://tryhackme.com/" target="_blank" rel="noopener"><div class="lab-mark">◌</div><div><small>02 / PLATFORM</small><h4>TRYHACKME</h4><p>Guided rooms and practical cybersecurity training.</p></div><b>↗</b></a></div></section>
+  <main id="main">
+    <section id="home" class="hero section">
+      <div class="hero-grid" aria-hidden="true"></div>
+      <img class="eagle-bg" src="assets/albanian-eagle.svg" alt="" aria-hidden="true">
+      <div class="hero-content reveal">
+        <div class="eyebrow"><span></span> HELLO, I'M</div>
+        <h1>LEON<span>ARDO</span></h1>
+        <div class="hero-role">CYBERSECURITY <b>×</b> DEVELOPER</div>
+        <blockquote>“The double pleasure lies in deceiving the deceiver”</blockquote>
+        <p>I'm Leonardo — an ordinary guy who loves computers, determined to become an icon in this field. The road is still long.</p>
+        <div class="hero-actions"><a class="btn btn-red" href="#labs">EXPLORE MY PATH <b>↓</b></a><a class="btn btn-dark" href="#contact">CONNECT <b>↗</b></a></div>
+        <div class="socials">
+          <a href="https://github.com/leo094454" target="_blank" rel="noopener noreferrer" aria-label="GitHub">GH</a>
+          <a href="https://www.instagram.com/leo_201028/?__pwa=1" target="_blank" rel="noopener noreferrer" aria-label="Instagram">IG</a>
+          <a href="https://www.linkedin.com/in/leonardo-code-b5b302423/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">IN</a>
+        </div>
+      </div>
+      <div class="hero-photo parallax-photo reveal"><div class="photo-frame"><img src="assets/leonardo.jpg" alt="Leonardo" fetchpriority="high"><div class="photo-gradient"></div><span class="photo-label">LEONARDO / 01</span><div class="photo-corner tl"></div><div class="photo-corner br"></div></div></div>
+      <aside class="focus-card parallax-card reveal"><div class="tiny-title"><span></span> CURRENT FOCUS</div><div class="focus-item"><div><span>KALI LINUX</span><b>01</b></div><div class="bar"><i style="width:88%"></i></div></div><div class="focus-item"><div><span>CYBERSECURITY</span><b>02</b></div><div class="bar"><i style="width:82%"></i></div></div><div class="focus-item"><div><span>RED TEAMING</span><b>03</b></div><div class="bar"><i style="width:72%"></i></div></div></aside>
+      <div class="scroll-indicator"><span>SCROLL / MOVE</span><i></i></div>
+    </section>
 
-<section class="section" id="learning"><div class="section-head reveal"><span>05</span><h3>TRAINING</h3><em>COURSES</em></div><div class="course-list reveal"><div><span>01</span><b>RED TEAMING</b><i>IN PROGRESS</i></div><div><span>02</span><b>ETHICAL HACKING</b><i>IN PROGRESS</i></div><div><span>03</span><b>BUG HUNTING</b><i>IN PROGRESS</i></div><div><span>04</span><b>PENETRATION TESTING</b><i>IN PROGRESS</i></div></div><div class="no-cert reveal"><span>STATUS</span><b>NO CERTIFICATIONS YET</b><p>Still studying, still building. The certificates will come with the journey.</p></div></section>
+    <section id="about" class="section about">
+      <div class="section-label">01 / ABOUT</div>
+      <div class="about-image reveal"><img src="assets/leonardo.jpg" alt="Leonardo portrait" loading="lazy"></div>
+      <div class="about-copy reveal"><div class="section-kicker">WHO I AM</div><h2>ABOUT <span>ME</span></h2><p>I'm Leonardo — a computer enthusiast building my path through cybersecurity, development and offensive security.</p><p class="muted">Field: Cybersecurity. The goal is big, and the road is still long.</p><a class="text-link" href="#contact">LET'S CONNECT <span>↗</span></a></div>
+      <div class="stats reveal"><div><strong>08</strong><small>CORE SKILLS</small></div><div><strong>02</strong><small>CYBER LABS</small></div><div><strong>01</strong><small>BIG GOAL</small></div></div>
+    </section>
 
-<section class="section dark" id="journey"><div class="section-head reveal"><span>06</span><h3>THE ASCENT</h3><em>JOURNEY</em></div><div class="timeline"><div class="step reveal"><span>01</span><h4>THE BEGINNING</h4><p>Started building a serious path in Cyber Security.</p></div><div class="step reveal"><span>02</span><h4>NETWORKING</h4><p>Understanding how systems communicate.</p></div><div class="step reveal"><span>03</span><h4>LINUX</h4><p>Building command-line and Linux skills.</p></div><div class="step reveal"><span>04</span><h4>CYBER SECURITY</h4><p>Going deeper into security.</p></div><div class="step reveal"><span>05</span><h4>RED TEAMING</h4><p>The direction I am building toward.</p></div><div class="step reveal"><span>06</span><h4>THE FUTURE</h4><p>Still writing the story...</p></div></div></section>
+    <section id="skills" class="section skills">
+      <div class="section-label">02 / SKILLS</div>
+      <div class="section-head reveal"><div><div class="section-kicker">WHAT I'M LEARNING</div><h2>MY <span>SKILLS</span></h2></div><p>Security, development and Linux skills I'm actively building.</p></div>
+      <div class="skills-grid reveal">
+        <div class="skill"><span>01</span><b>KALI LINUX</b><small>LINUX / SECURITY</small></div><div class="skill"><span>02</span><b>CYBERSECURITY</b><small>SECURITY</small></div><div class="skill"><span>03</span><b>RED TEAMING</b><small>OFFENSIVE SECURITY</small></div><div class="skill"><span>04</span><b>PYTHON</b><small>LANGUAGE</small></div><div class="skill"><span>05</span><b>HTML</b><small>WEB</small></div><div class="skill"><span>06</span><b>CSS</b><small>WEB</small></div><div class="skill"><span>07</span><b>JAVA</b><small>LANGUAGE</small></div><div class="skill"><span>08</span><b>PHP</b><small>BACKEND</small></div>
+      </div>
+    </section>
 
-<section class="section contact" id="contact"><div class="section-head reveal"><span>07</span><h3>THE NETWORK</h3><em>CONTACT</em></div><div class="contact-grid"><div class="socials reveal"><a href="https://github.com/leo094454" target="_blank" rel="noopener"><span>GH</span> GITHUB <b>↗</b></a><a href="https://www.instagram.com/leo_201028/?__pwa=1" target="_blank" rel="noopener"><span>IG</span> INSTAGRAM <b>↗</b></a><a href="https://www.linkedin.com/in/leonardo-code-b5b302423/" target="_blank" rel="noopener"><span>IN</span> LINKEDIN <b>↗</b></a><a href="https://www.tiktok.com/@leo_201082?lang=en" target="_blank" rel="noopener"><span>TT</span> TIKTOK <b>↗</b></a><a href="https://wa.me/201090910243" target="_blank" rel="noopener"><span>WA</span> WHATSAPP <b>↗</b></a></div><div class="goal reveal"><span>THE GOAL</span><h2>BECOME<br><strong>UNFORGETTABLE.</strong></h2><p>Not just good. Not just skilled. Build a name that speaks before I do.</p><div>✦ LEO ✦</div></div></div></section>
-</main>
-<footer><span>© 2026 LEONARDO — LEO</span><span>THE STORY IS STILL BEING WRITTEN.</span><span>CYBER SECURITY / RED TEAMING</span></footer>
-<script src="script.js"></script>
-</body></html>
+    <section id="labs" class="section labs">
+      <div class="section-label">03 / LABS</div>
+      <div class="section-head reveal"><div><div class="section-kicker">TRAINING GROUND</div><h2>CYBER <span>LABS</span></h2></div><p>Hands-on platforms for practice, problem solving and continuous learning.</p></div>
+      <div class="learning-grid reveal">
+        <a class="learning-card" href="https://www.hackthebox.com/" target="_blank" rel="noopener noreferrer"><span>01</span><strong>HACK THE BOX</strong><small>CYBER LAB / PRACTICE</small><b>↗</b></a>
+        <a class="learning-card" href="https://tryhackme.com/" target="_blank" rel="noopener noreferrer"><span>02</span><strong>TRYHACKME</strong><small>CYBER LAB / PRACTICE</small><b>↗</b></a>
+      </div>
+      <div class="courses reveal"><div class="section-kicker">COURSES / TOPICS</div><div class="course-list"><span>RED TEAMING</span><span>ETHICAL HACKING</span><span>BUG HUNTING</span><span>PENETRATION TESTING</span></div><div class="education"><small>EDUCATION</small><strong>Currently finishing high school.</strong></div></div>
+    </section>
+
+    <section id="music" class="section music">
+      <div class="section-label">04 / MUSIC</div>
+      <div class="music-wrap reveal">
+        <div class="album-art"><img src="assets/leonardo.jpg" alt="Leonardo music artwork" loading="lazy"><div class="art-overlay"></div><div class="art-label">LEONARDO / SOUND</div></div>
+        <div class="player"><div class="section-kicker">NOW PLAYING</div><h2>LEONARDO <span>PLAYLIST</span></h2><p class="track-name">PERSONAL TRACK <small>• PORTFOLIO SOUNDTRACK</small></p><div class="wave" id="wave" aria-hidden="true"></div><div class="time-row"><span id="current">0:00</span><span id="duration">0:00</span></div><input id="progress" type="range" min="0" max="100" value="0" aria-label="Music progress"><div class="controls"><button id="back" type="button" aria-label="Restart track">↶</button><button id="play" class="play" type="button" aria-label="Play music">▶</button><button id="mute" type="button" aria-label="Mute music">◒</button></div></div>
+      </div>
+    </section>
+
+    <section id="contact" class="section contact">
+      <div class="section-label">05 / CONTACT</div>
+      <div class="contact-copy reveal"><div class="section-kicker">THE GOAL</div><h2>BE THE <span>BEST</span></h2><p>Goal: <strong>Become the biggest name in my field.</strong></p><div class="contact-line">WHATSAPP <a href="https://wa.me/201090910243" target="_blank" rel="noopener noreferrer">+20 109 091 0243</a></div><div class="contact-line">EMAIL <span>NOT AVAILABLE</span></div></div>
+      <div class="contact-form reveal"><a class="social-contact" href="https://github.com/leo094454" target="_blank" rel="noopener noreferrer"><span>GITHUB</span><b>↗</b></a><a class="social-contact" href="https://www.instagram.com/leo_201028/?__pwa=1" target="_blank" rel="noopener noreferrer"><span>INSTAGRAM</span><b>↗</b></a><a class="social-contact" href="https://www.linkedin.com/in/leonardo-code-b5b302423/" target="_blank" rel="noopener noreferrer"><span>LINKEDIN</span><b>↗</b></a></div>
+    </section>
+  </main>
+
+  <footer><div class="brand"><span class="brand-mark">L</span><span>LEONARDO</span></div><span>© 2026 LEONARDO</span><a href="#home">BACK TO TOP ↑</a></footer>
+  <script src="script.js" defer></script>
+</body>
+</html>
